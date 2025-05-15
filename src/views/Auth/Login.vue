@@ -73,6 +73,35 @@
         <!-- end container fluid -->
     </div>
 </template>
+<script setup>
+/* All Library Import */
+import { useAuthStore } from '@/stores/auth';
+import { ref, reactive } from 'vue';
+import { useRouter } from 'vue-router';
+
+/* All Instance */
+const authStore = useAuthStore();
+const router = useRouter();
+
+
+/* All Variable */
+const loginForm = reactive({
+    email: null,
+    password: null,
+});
+
+
+/* Methods */
+const login = () => {
+
+}
+/* Hooks and Computed */
+
+
+</script>
+
+
+
 
 <style scoped>
 .logo-txt{
