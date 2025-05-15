@@ -28,30 +28,32 @@
                                         <p class="text-muted mt-2">Sign in to continue.</p>
                                     </div>
 
-                                    <form class="mt-4 pt-2">
+                                    <vee-form :validation-schema="schema" @submit="login" class="mt-4 pt-2">
 
                                         <div class="form-floating form-floating-custom mb-3">
-                                            <input type="text" class="form-control" id="input-username"
-                                                placeholder="Enter User Name">
+                                            <vee-field type="email" class="form-control" id="input-username"
+                                                placeholder="Enter User Name" name="email" v-model="loginForm.email" />
                                             <label for="input-username">Email Address</label>
                                             <div class="form-floating-icon">
                                                 <i class="uil uil-users-alt"></i>
                                             </div>
+                                            <ErrorMessage class="text-danger" name="email" />
                                         </div>
 
 
                                         <div class="form-floating form-floating-custom mb-3 auth-pass-inputgroup">
-                                            <input type="password" class="form-control" id="password-input"
-                                                placeholder="Enter Password">
+                                            <vee-field type="password" class="form-control" id="password-input"
+                                                placeholder="Enter Password" name="password" v-model="loginForm.password"/>
                                             <label for="password-input">Password</label>
                                             <div class="form-floating-icon">
                                                 <i class="uil uil-padlock"></i>
                                             </div>
+                                            <ErrorMessage class="text-danger" name="password" />
                                         </div>
                                     
 
                                         <div class="form-check form-check-primary font-size-16 py-1">
-                                            <input class="form-check-input" type="checkbox" id="remember-check">
+                                            <vee-field class="form-check-input" type="checkbox" id="remember-check" name="remember" value="true"/>
                                             <label class="form-check-label font-size-14" for="remember-check">
                                                 Remember me
                                             </label>
@@ -60,7 +62,7 @@
                                         <div class="mt-3">
                                             <button class="btn btn-primary w-100" type="submit">Log In</button>
                                         </div>
-                                    </form>
+                                    </vee-form>
                                     
                                     <!-- end form -->
                                 </div>
@@ -76,10 +78,11 @@
 <script setup>
 /* All Library Import */
 import { useAuthStore } from '@/stores/auth';
-import { ref, reactive } from 'vue';
+import { ref, reactive, inject } from 'vue';
 import { useRouter } from 'vue-router';
 
 /* All Instance */
+const swal = inject('$swal');
 const authStore = useAuthStore();
 const router = useRouter();
 
@@ -90,11 +93,33 @@ const loginForm = reactive({
     password: null,
 });
 
+const schema = reactive({
+    email: 'required|email',
+    password: 'required|min:4|max:25',
+})
+
 
 /* Methods */
 const login = () => {
-
+    authStore.login(loginForm, (status) => {
+        if(status == 'success'){
+            swal({
+                icon: 'success',
+                timer: 1000,
+                title: authStore.message
+            });
+            router.push({name: 'dashboard'})
+        }else{
+            swal({
+                icon: 'error',
+                timer: 1000,
+                title: authStore.message
+            });
+            router.push({name: 'login'})
+        }
+    })
 }
+
 /* Hooks and Computed */
 
 

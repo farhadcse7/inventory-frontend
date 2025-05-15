@@ -16,7 +16,7 @@ app.use(router)
 app.use(VeeValidatePlugin);
 app.use(VueSweetAlert2, {
     confirmButtonColor: '#A95EEA',
-    cancelmButtonColor: '#FF7674',
+    cancelButtonColor: '#FF7674',
 })
 
 app.mount('#app')
