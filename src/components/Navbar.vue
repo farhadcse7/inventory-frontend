@@ -51,13 +51,12 @@
                    <ProfileView />
                 </div>
         </div>
-        <ShortDashboard />
+       
         </header>
 </template>
 
 <script setup>
 import MenuBarView from './MenuBar.vue';
-import ShortDashboard from './ShortDashboard.vue';
 import NotificationView from './Notifications.vue';
 import ProfileView from './Profile.vue';
 </script>

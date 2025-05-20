@@ -3,18 +3,14 @@
         <NavbarView />
         <div class="hori-overlay"></div>
         <div class="main-content">
-            <div class="page-content">
-                <div class="container-fluid">
-                    <!-- Content Here -->
-                    <router-view v-slot="{ Component, route }">
-                        <transition name="route" mode="out-in">
-                            <div :key="route.name">
-                                <component :is="Component" />
-                            </div>
-                        </transition>
-                    </router-view>
-                </div>
-            </div>
+             <!-- Content Here -->
+             <router-view v-slot="{ Component, route }">
+                <transition name="route" mode="out-in">
+                    <div :key="route.name">
+                        <component :is="Component" />
+                    </div>
+                </transition>
+            </router-view>
         </div>
      </div>
 </template>
