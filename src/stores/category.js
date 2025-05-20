@@ -81,11 +81,49 @@ export const useCategoryStore = defineStore('category', {
         async updateCategory(){
 
         },
-        async deleteCategory(){
-
+        async deleteCategory(category_id, callback){
+            this.is_loading = false;
+            try {
+                const { data } = await inventoryAxiosClient.delete(`/categories/${category_id}`); 
+                callback('success');
+                this.swal({
+                    icon: 'success',
+                    title: 'Action Performed Successfully',
+                    timer: 1000,
+                })
+                this.is_loading = false;
+            } catch (error) {
+                this.errors = error.response.data;
+                this.swal({
+                    icon: 'error',
+                    title: 'Something went wrong!!',
+                    timer: 1000,
+                    text: this.errors.message
+                })
+                callback('error');
+                this.is_loading = false;
+            }
         },
-        async changeStatus(){
-
+        async changeStatus(category_id){
+            this.is_loading = true;
+            try {
+                const { data } = await inventoryAxiosClient.get(`/categories/status/${category_id}`); 
+                this.is_loading = false;
+                this.swal({
+                    icon: 'success',
+                    title: 'Status Updated!',
+                    timer: 1000,
+                })
+            } catch (error) {
+                this.errors = error.response.data;
+                this.is_loading = false;
+                this.swal({
+                    icon: 'error',
+                    title: 'Something went wrong!!',
+                    timer: 1000,
+                    text: this.errors.message
+                })
+            }
         },
     }
 
