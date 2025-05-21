@@ -103,7 +103,11 @@ watch(
                                         <th scope="row">{{ (categoryStore.pagination.current_page*categoryStore.dataLimit) - categoryStore.dataLimit+index+1 }}</th>
                                         <td>{{ category.name }}</td>
                                         <td>{{ category.code }}</td>
-                                        <td>{{ category.file }}</td>
+                                        <td>
+                                            <template v-if="category.file != null">
+                                                <img :src="category.file" alt="" class="img-fluid" style="width: 80px; height: 80px;">
+                                            </template>
+                                        </td>
                                         <td>
                                             <div class="form-check form-switch d-flex justify-content-center">
                                                 <input type="checkbox" class="form-check-input fs-5" role="switch" id="changeStatus" :checked="category.is_active" 
