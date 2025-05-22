@@ -53,11 +53,11 @@ watch(
             <div class="row">
                 <!-- Header Part -->
                 <div class="col-md-12">
-                    <div class="card">
+                    <div class="card border-primary">
                         <div class="card-body">
                             <div class="d-flex align-items-center justify-content-between">
-                                <h4 class="card-title">Category Index</h4>
-                                <router-link :to="{ name: 'category-create' }" class="btn btn-success">
+                                <h4 class="card-title text-primary fw-bold">Category Index</h4>
+                                <router-link :to="{ name: 'category-create' }" class="btn btn-success text-white fw-bold">
                                     <i class="fas fa-plus-circle"></i> Create New</router-link>
                             </div>
                         </div>
@@ -66,7 +66,7 @@ watch(
 
                 <!-- Statistics Part -->
                 <div class="col-md-12">
-                    <div class="card">
+                    <div class="card border-primary">
                         <div class="card-body">
                             <!-- Search Bar & Count -->
                             <div class="row">
@@ -87,7 +87,7 @@ watch(
                 <div class="row my-4">
                     <div class="col-md-12">
                         <div class="table-responsive">
-                            <table class="table table-bordered table-striped">
+                            <table class="table table-bordered table-striped text-primary">
                                 <thead>
                                     <tr>
                                         <th scope="col">#</th>

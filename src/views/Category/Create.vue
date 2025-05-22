@@ -42,11 +42,11 @@ const onFileChange = (e) => {
       <div class="row">
 
         <div class="col-md-12">
-          <div class="card">
+          <div class="card border-primary">
             <div class="card-body">
               <div class="d-flex align-items-center justify-content-between">
-                <h4 class="card-title">Category Create</h4>
-                <router-link :to="{ name: 'category-index' }" class="btn btn-primary">
+                <h4 class="card-title text-primary fw-bold">Category Create</h4>
+                <router-link :to="{ name: 'category-index' }" class="btn btn-primary text-white fw-bold">
                   <i class="fas fa-arrow-left"></i> Category List</router-link>
               </div>
             </div>
@@ -54,7 +54,7 @@ const onFileChange = (e) => {
         </div>
 
         <div class="col-md-12">
-          <div class="card">
+          <div class="card border-primary">
             <div class="card-body">
               <vee-form :validation-schema="schema" @submit="saveCategory" class="mt-4 pt-2" enctype="multipart/form-data">
                 <div class="row">
